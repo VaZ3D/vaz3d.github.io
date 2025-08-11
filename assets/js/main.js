@@ -1,4 +1,4 @@
-// ===== CYBERPUNK PORTFOLIO JAVASCRIPT =====
+// ===== PORTFOLIO JAVASCRIPT =====
 
 document.addEventListener('DOMContentLoaded', function() {
     
