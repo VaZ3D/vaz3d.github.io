@@ -2,6 +2,50 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     
+    // ===== MOBILE BACKGROUND IMAGE FIX =====
+    function ensureMobileBackground() {
+        const backgroundElement = document.querySelector('.cyber-background');
+        if (!backgroundElement) return;
+        
+        // Check if we're on mobile
+        const isMobile = window.innerWidth <= 768;
+        
+        if (isMobile) {
+            // Preload the background image
+            const bgImage = new Image();
+            bgImage.onload = function() {
+                // Force the background to be applied
+                backgroundElement.style.backgroundImage = `
+                    linear-gradient(135deg, rgba(5, 5, 5, 0.9) 0%, rgba(10, 10, 10, 0.8) 100%),
+                    url('assets/images/Background.jpg')
+                `;
+                backgroundElement.style.backgroundSize = 'cover';
+                backgroundElement.style.backgroundPosition = 'center';
+                backgroundElement.style.backgroundRepeat = 'no-repeat';
+                backgroundElement.style.backgroundAttachment = 'scroll';
+            };
+            bgImage.onerror = function() {
+                console.warn('Background image failed to load on mobile');
+                // Apply a fallback gradient
+                backgroundElement.style.background = `
+                    linear-gradient(135deg, rgba(5, 5, 5, 0.95) 0%, rgba(10, 10, 10, 0.9) 100%)
+                `;
+            };
+            bgImage.src = 'assets/images/Background.jpg';
+        }
+    }
+    
+    // Run the mobile background fix
+    ensureMobileBackground();
+    
+    // Re-run on orientation change
+    window.addEventListener('orientationchange', function() {
+        setTimeout(ensureMobileBackground, 100);
+    });
+    
+    // Re-run on resize
+    window.addEventListener('resize', debounce(ensureMobileBackground, 250));
+    
     // ===== MOBILE MENU TOGGLE =====
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');

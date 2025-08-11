@@ -72,6 +72,65 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    background-attachment: fixed;
+    /* Fallback for mobile */
+    background-color: var(--bg-dark);
+    /* Ensure the element is visible */
+    opacity: 1;
+    visibility: visible;
+    /* Force hardware acceleration */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+}
+
+/* Mobile-specific background rules */
+@media (max-width: 768px) {
+    .cyber-background {
+        background: 
+            linear-gradient(135deg, rgba(5, 5, 5, 0.9) 0%, rgba(10, 10, 10, 0.8) 100%),
+            url('../images/Background.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: scroll; /* Changed from fixed for mobile */
+        /* Ensure the image loads */
+        background-image: 
+            linear-gradient(135deg, rgba(5, 5, 5, 0.9) 0%, rgba(10, 10, 10, 0.8) 100%),
+            url('../images/Background.jpg');
+        /* Force background to show */
+        min-height: 100vh;
+        height: 100vh;
+        /* Add will-change for better performance */
+        will-change: background-image;
+    }
+}
+
+/* Additional mobile fallback */
+@media (max-width: 480px) {
+    .cyber-background {
+        background: 
+            linear-gradient(135deg, rgba(5, 5, 5, 0.95) 0%, rgba(10, 10, 10, 0.9) 100%),
+            url('../images/Background.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: scroll;
+        /* Force background to show */
+        min-height: 100vh;
+        height: 100vh;
+        /* Ensure the background is visible */
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+/* Ultra-mobile devices */
+@media (max-width: 320px) {
+    .cyber-background {
+        background: 
+            linear-gradient(135deg, rgba(5, 5, 5, 0.98) 0%, rgba(10, 10, 10, 0.95) 100%);
+        /* Fallback to gradient only for very small screens */
+    }
 }
 
 /* Digital Rain Effect */
