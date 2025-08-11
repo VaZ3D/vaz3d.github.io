@@ -140,21 +140,140 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: 
-        repeating-linear-gradient(
-            90deg,
-            transparent,
-            transparent 2px,
-            rgba(0, 255, 255, 0.1) 2px,
-            rgba(0, 255, 255, 0.1) 4px
-        );
-    animation: digitalRain 20s linear infinite;
-    opacity: 0.3;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 5;
 }
 
-@keyframes digitalRain {
-    0% { transform: translateY(-100%); }
-    100% { transform: translateY(100%); }
+.raindrop {
+    position: absolute;
+    width: 1px;
+    height: 60px;
+    background: 
+        linear-gradient(to bottom,
+            rgba(255, 255, 255, 0.15) 0%,
+            rgba(255, 0, 128, 0.13) 20%,
+            rgba(255, 0, 128, 0.11) 40%,
+            rgba(138, 43, 226, 0.10) 60%,
+            rgba(0, 0, 0, 0.09) 80%,
+            rgba(0, 0, 0, 0.08) 100%);
+    border-radius: 0.5px;
+    animation: wushFall linear infinite;
+    opacity: 0;
+    filter: blur(0.3px);
+    box-shadow: 
+        0 0 1px rgba(255, 0, 128, 0.15),
+        0 0 3px rgba(255, 0, 128, 0.13),
+        0 0 4px rgba(138, 43, 226, 0.10);
+    backdrop-filter: blur(0.3px);
+    mix-blend-mode: screen;
+    transform-origin: top center;
+}
+
+.raindrop:nth-child(odd) {
+    background: 
+        linear-gradient(to bottom,
+            rgba(255, 255, 255, 0.13) 0%,
+            rgba(255, 0, 128, 0.11) 15%,
+            rgba(255, 0, 128, 0.10) 35%,
+            rgba(138, 43, 226, 0.09) 55%,
+            rgba(0, 0, 0, 0.08) 75%,
+            rgba(0, 0, 0, 0.07) 100%);
+    width: 0.2px;
+    height: 40px;
+    box-shadow: 
+        0 0 1px rgba(255, 0, 128, 0.10),
+        0 0 2px rgba(255, 0, 128, 0.09),
+        0 0 3px rgba(138, 43, 226, 0.08);
+}
+
+.raindrop:nth-child(3n) {
+    background: 
+        linear-gradient(to bottom,
+            rgba(255, 255, 255, 0.17) 0%,
+            rgba(255, 0, 128, 0.15) 10%,
+            rgba(255, 0, 128, 0.14) 25%,
+            rgba(138, 43, 226, 0.13) 45%,
+            rgba(0, 0, 0, 0.11) 65%,
+            rgba(0, 0, 0, 0.10) 85%,
+            rgba(0, 0, 0, 0.08) 100%);
+    width: 0.9px;
+    height: 80px;
+    box-shadow: 
+        0 0 2px rgba(255, 0, 128, 0.13),
+        0 0 4px rgba(255, 0, 128, 0.11),
+        0 0 6px rgba(138, 43, 226, 0.10);
+}
+
+.raindrop:nth-child(5n) {
+    background: 
+        linear-gradient(to bottom,
+            rgba(255, 255, 255, 0.11) 0%,
+            rgba(255, 0, 128, 0.10) 20%,
+            rgba(255, 0, 128, 0.09) 40%,
+            rgba(138, 43, 226, 0.08) 60%,
+            rgba(0, 0, 0, 0.07) 80%,
+            rgba(0, 0, 0, 0.06) 100%);
+    width: 0.2px;
+    height: 30px;
+    box-shadow: 
+        0 0 1px rgba(255, 0, 128, 0.09),
+        0 0 1px rgba(255, 0, 128, 0.08),
+        0 0 2px rgba(138, 43, 226, 0.07);
+}
+
+.raindrop:nth-child(7n) {
+    background: 
+        linear-gradient(to bottom,
+            rgba(255, 255, 255, 0.20) 0%,
+            rgba(255, 0, 128, 0.17) 5%,
+            rgba(255, 0, 128, 0.15) 15%,
+            rgba(138, 43, 226, 0.14) 30%,
+            rgba(0, 0, 0, 0.13) 50%,
+            rgba(0, 0, 0, 0.11) 70%,
+            rgba(0, 0, 0, 0.10) 90%,
+            rgba(0, 0, 0, 0.08) 100%);
+    width: 1.1px;
+    height: 100px;
+    box-shadow: 
+        0 0 3px rgba(255, 0, 128, 0.15),
+        0 0 6px rgba(255, 0, 128, 0.13),
+        0 0 9px rgba(138, 43, 226, 0.11);
+}
+
+@keyframes wushFall {
+    0% {
+        transform: translateY(-5vh) translateX(0px) scale(0.8) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.8;
+        transform: translateY(-2vh) translateX(0px) scale(0.9) rotate(0deg);
+    }
+    25% {
+        opacity: 1;
+        transform: translateY(5vh) translateX(0px) scale(1) rotate(0deg);
+    }
+    50% {
+        opacity: 0.7;
+        transform: translateY(25vh) translateX(0px) scale(0.95) rotate(0deg);
+    }
+    70% {
+        opacity: 0.4;
+        transform: translateY(55vh) translateX(0px) scale(0.9) rotate(0deg);
+    }
+    85% {
+        opacity: 0.2;
+        transform: translateY(80vh) translateX(0px) scale(0.85) rotate(0deg);
+    }
+    95% {
+        opacity: 0.1;
+        transform: translateY(95vh) translateX(0px) scale(0.8) rotate(0deg);
+    }
+    100% {
+        transform: translateY(110vh) translateX(0px) scale(0.75) rotate(0deg);
+        opacity: 0;
+    }
 }
 
 /* Neon Buildings */
@@ -163,7 +282,7 @@ body {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 60%;
+    height: 100%;
     background: 
         linear-gradient(90deg, 
             transparent 0%, 
@@ -181,21 +300,7 @@ body {
     50% { opacity: 0.6; transform: scaleY(1.1); }
 }
 
-/* Cyber Particles */
-.cyber-particles {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: 
-        radial-gradient(circle at 20% 80%, var(--neon-pink) 1px, transparent 1px),
-        radial-gradient(circle at 80% 20%, var(--neon-blue) 1px, transparent 1px),
-        radial-gradient(circle at 40% 40%, var(--neon-purple) 1px, transparent 1px);
-    background-size: 100px 100px, 150px 150px, 200px 200px;
-    animation: particleFloat 15s linear infinite;
-    opacity: 0.4;
-}
+
 
 @keyframes particleFloat {
     0% { transform: translateY(0px) rotate(0deg); }

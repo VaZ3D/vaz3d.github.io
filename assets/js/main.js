@@ -2,6 +2,90 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     
+    // ===== RAINDROP GENERATION =====
+    function createRaindrops() {
+        const rainContainer = document.querySelector('.digital-rain');
+        if (!rainContainer) return;
+        
+        // Clear existing raindrops
+        rainContainer.innerHTML = '';
+        
+            // Create multiple wush streaks with dynamic distribution
+    const numberOfDrops = 300; // More streaks for full coverage
+    
+    for (let i = 0; i < numberOfDrops; i++) {
+        const raindrop = document.createElement('div');
+        raindrop.className = 'raindrop';
+        
+        // Dynamic horizontal distribution for wush effect
+        const distribution = Math.random();
+        let left;
+        if (distribution < 0.4) {
+            // Dense center area (40% chance)
+            left = 15 + Math.random() * 70;
+        } else if (distribution < 0.7) {
+            // Medium spread (30% chance)
+            left = Math.random() * 100;
+        } else {
+            // Edge areas (30% chance)
+            left = (Math.random() < 0.5) ? Math.random() * 15 : 85 + Math.random() * 15;
+        }
+        
+        // Varied animation duration with acceleration effect (2-8 seconds)
+        const baseDuration = 2 + Math.random() * 6;
+        const speedVariation = 0.6 + Math.random() * 0.8; // More speed variation
+        const duration = baseDuration / speedVariation;
+        
+        // Staggered delay for continuous wush effect across full height
+        const delay = Math.random() * 12; // Longer delay range for full coverage
+        
+        // Varied streak sizes for water-like effect
+        const sizeVariation = Math.random();
+        let width, height;
+        if (sizeVariation < 0.4) {
+            width = 0.5; height = 30 + Math.random() * 20; // Very thin short streaks
+        } else if (sizeVariation < 0.7) {
+            width = 1; height = 50 + Math.random() * 25; // Thin medium streaks
+        } else if (sizeVariation < 0.9) {
+            width = 1.5; height = 70 + Math.random() * 30; // Medium streaks
+        } else {
+            width = 2; height = 90 + Math.random() * 40; // Thick long streaks
+        }
+        
+        // Apply styles
+        raindrop.style.left = `${left}%`;
+        raindrop.style.width = `${width}px`;
+        raindrop.style.height = `${height}px`;
+        raindrop.style.animationDuration = `${duration}s`;
+        raindrop.style.animationDelay = `${delay}s`;
+        
+        // Dynamic movement for wush effect
+        const windFactor = (Math.random() - 0.5) * 0.4; // More wind variation
+        const rotation = (Math.random() - 0.5) * 15; // More rotation for wush
+        
+        // Apply transform with wush physics
+        raindrop.style.transform = `translateX(${windFactor * 150}px) rotate(${rotation}deg)`;
+        
+        // Enhanced opacity for water-like effect
+        const baseOpacity = 0.08 + Math.random() * 0.12; // Even more transparent for water
+        const sizeOpacityFactor = Math.min(1, height / 60); // Longer streaks more visible
+        const opacity = baseOpacity * sizeOpacityFactor;
+        raindrop.style.opacity = opacity;
+        
+        // Dynamic blur for water-like effect
+        const blurAmount = 0.2 + Math.random() * 0.8; // Less blur for water clarity
+        raindrop.style.filter = `blur(${blurAmount}px)`;
+        
+        rainContainer.appendChild(raindrop);
+    }
+    }
+    
+    // Initialize raindrops
+    createRaindrops();
+    
+    // Recreate raindrops on window resize with debounce
+    window.addEventListener('resize', debounce(createRaindrops, 500));
+    
     // ===== MOBILE BACKGROUND IMAGE FIX =====
     function ensureMobileBackground() {
         const backgroundElement = document.querySelector('.cyber-background');
