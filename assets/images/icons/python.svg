@@ -1,0 +1,17 @@
+<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="pythonGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00ff41;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00ffff;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect x="2" y="2" width="36" height="36" rx="4" fill="url(#pythonGradient)" opacity="0.2"/>
+  
+  <!-- Python snake -->
+  <path d="M8 20 Q15 15 22 20 Q29 25 32 20" stroke="url(#pythonGradient)" stroke-width="2" fill="none"/>
+  
+  <!-- Python text -->
+  <text x="20" y="32" font-family="monospace" font-size="8" font-weight="bold" text-anchor="middle" fill="url(#pythonGradient)">PY</text>
+</svg>

@@ -1,0 +1,19 @@
+<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="csharpGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0080ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ff0080;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect x="2" y="2" width="36" height="36" rx="4" fill="url(#csharpGradient)" opacity="0.2"/>
+  
+  <!-- C# symbol -->
+  <text x="15" y="22" font-family="monospace" font-size="12" fill="#0080ff">C</text>
+  <text x="25" y="22" font-family="monospace" font-size="12" fill="#ff0080">#</text>
+  
+  <!-- Sharp symbol accent -->
+  <line x1="22" y1="15" x2="28" y2="21" stroke="url(#csharpGradient)" stroke-width="1"/>
+  <line x1="22" y1="21" x2="28" y2="15" stroke="url(#csharpGradient)" stroke-width="1"/>
+</svg>
