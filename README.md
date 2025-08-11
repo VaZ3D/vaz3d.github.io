@@ -103,23 +103,6 @@ I believe the web should be accessible to everyone:
 - **ARIA Labels**: Proper labeling for all interactive elements
 - **Color Contrast**: High contrast ratios for readability
 
-## 🚀 Deployment Options
-
-### GitHub Pages (My Choice)
-1. Push your code to a GitHub repository
-2. Enable GitHub Pages in repository settings
-3. Select your source branch (usually `main`)
-
-### Netlify
-1. Connect your GitHub repository to Netlify
-2. Automatic deployment on every push
-3. Custom domain configuration available
-
-### Vercel
-1. Import your project to Vercel
-2. Automatic deployment from Git
-3. Preview deployments for pull requests
-
 ## 📈 SEO Features
 
 I've built this with search engines in mind:
