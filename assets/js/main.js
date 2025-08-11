@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Force the background to be applied
                 backgroundElement.style.backgroundImage = `
                     linear-gradient(135deg, rgba(5, 5, 5, 0.9) 0%, rgba(10, 10, 10, 0.8) 100%),
-                    url('assets/images/Background.jpg')
+                    url('assets/images/Background.png')
                 `;
                 backgroundElement.style.backgroundSize = 'cover';
                 backgroundElement.style.backgroundPosition = 'center';
@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     linear-gradient(135deg, rgba(5, 5, 5, 0.95) 0%, rgba(10, 10, 10, 0.9) 100%)
                 `;
             };
-            bgImage.src = 'assets/images/Background.jpg';
+            bgImage.src = 'assets/images/Background.png';
         }
     }
     

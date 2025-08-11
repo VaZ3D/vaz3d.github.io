@@ -68,7 +68,7 @@ body {
     z-index: -1;
     background: 
         linear-gradient(135deg, rgba(5, 5, 5, 0.8) 0%, rgba(10, 10, 10, 0.7) 100%),
-        url('../images/Background.jpg');
+        url('../images/Background.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -296,8 +296,8 @@ body {
 }
 
 @keyframes buildingPulse {
-    0%, 100% { opacity: 0.3; transform: scaleY(1); }
-    50% { opacity: 0.6; transform: scaleY(1.1); }
+    0%, 100% { opacity: 0.4; transform: scaleY(1); }
+    50% { opacity: 0.7; transform: scaleY(1.1); }
 }
 
 
@@ -306,6 +306,8 @@ body {
     0% { transform: translateY(0px) rotate(0deg); }
     100% { transform: translateY(-100px) rotate(360deg); }
 }
+
+
 
 /* ===== TYPOGRAPHY ===== */
 h1, h2, h3, h4, h5, h6 {
@@ -354,7 +356,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-logo .logo-image {
-    height: 50px;
+    height: 40px;
     width: auto;
     filter: drop-shadow(0 0 10px var(--neon-blue));
     animation: logoPulse 2s ease-in-out infinite;

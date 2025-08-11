@@ -1,42 +1,47 @@
-<svg width="240" height="70" viewBox="0 0 240 70" xmlns="http://www.w3.org/2000/svg">
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-256 -160 512 320" width="1200" height="750">
   <defs>
-    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:1" />
-      <stop offset="30%" style="stop-color:#00b8e6;stop-opacity:1" />
-      <stop offset="50%" style="stop-color:#ff0080;stop-opacity:1" />
-      <stop offset="70%" style="stop-color:#e60073;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#8a2be2;stop-opacity:1" />
+    <linearGradient id="cy" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#00eaff"/>
+      <stop offset="1" stop-color="#19a6ff"/>
     </linearGradient>
-    <filter id="glow">
-      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-      <feMerge> 
-        <feMergeNode in="coloredBlur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
+    <linearGradient id="pk" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff2da1"/>
+      <stop offset="1" stop-color="#ff5bd9"/>
+    </linearGradient>
+
+    <!-- soft neon glow -->
+    <filter id="glowC" x="-120%" y="-120%" width="340%" height="340%">
+      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
+    <filter id="glowP" x="-120%" y="-120%" width="340%" height="340%">
+      <feGaussianBlur stdDeviation="2.5" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <style><![CDATA[
+      @keyframes flicker { 0%,100% { opacity: .85 } 48% { opacity: 1 } 50% { opacity: .6 } 52% { opacity: 1 } }
+      @keyframes jitter { 0%,100% { transform: translate(0,0) } 50% { transform: translate(.4px,-.3px) } }
+      .flick { animation: flicker 2.6s ease-in-out infinite; }
+      .jitter { animation: jitter 1.8s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+    ]]></style>
   </defs>
-  
-  <!-- Background glow -->
-  <rect x="0" y="0" width="240" height="70" fill="none"/>
-  
-  <!-- Main V symbol with 3D effect -->
-  <g filter="url(#glow)">
-    <!-- Primary V -->
-    <path d="M30 18 L48 54 L66 18" stroke="url(#logoGradient)" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-    
-    <!-- 3D shadow effect -->
-    <path d="M30 18 L48 50 L66 18" stroke="url(#logoGradient)" stroke-width="3" fill="none" opacity="0.4"/>
-    
-    <!-- Inner highlight -->
-    <path d="M30 18 L48 58 L66 18" stroke="url(#logoGradient)" stroke-width="2" fill="none" opacity="0.8"/>
+
+  <!-- ICON: angular V + Z monogram -->
+  <g id="monogram" stroke-linecap="round" stroke-linejoin="round">
+    <!-- cyan V -->
+    <g filter="url(#glowC)" class="jitter">
+      <!-- slight pink chromatic offset for the V -->
+      <path d="M -140 -40 L -80 44 L -20 -40" stroke="url(#pk)" stroke-width="10" opacity=".55" transform="translate(1.5,-1.2)"/>
+      <path d="M -140 -40 L -80 44 L -20 -40" stroke="url(#cy)" stroke-width="10"/>
+    </g>
+
+    <!-- pink Z -->
+    <g filter="url(#glowP)" class="jitter" style="animation-duration:2.2s">
+      <!-- slight cyan chromatic offset for the Z -->
+      <path d="M 20 -40 H 148 L 20 44 H 148" stroke="url(#cy)" stroke-width="10" opacity=".55" transform="translate(-1.2,1)"/>
+      <path d="M 20 -40 H 148 L 20 44 H 148" stroke="url(#pk)" stroke-width="10"/>
+    </g>
   </g>
-  
-  <!-- VaZ3D text with cyberpunk styling -->
-  <text x="120" y="45" font-family="Orbitron, monospace" font-size="22" font-weight="900" text-anchor="middle" fill="url(#logoGradient)" filter="url(#glow)">
-    VaZ3D
-  </text>
-  
-  <!-- Cyber accent lines -->
-  <line x1="85" y1="56" x2="155" y2="56" stroke="url(#logoGradient)" stroke-width="2" opacity="0.9"/>
-  <line x1="90" y1="58" x2="150" y2="58" stroke="url(#logoGradient)" stroke-width="1" opacity="0.6"/>
 </svg>
