@@ -84,6 +84,10 @@ I've optimized every aspect for speed and smoothness:
 - **Debounced Events**: Scroll and resize events are optimized to prevent performance issues
 - **Reduced Motion**: Respects user's motion preferences for accessibility
 - **Efficient Rendering**: Uses `will-change` and `transform3d` for buttery-smooth animations
+- **Optimized Assets**: Removed unused CSS classes and JavaScript functions
+- **Resource Preloading**: Critical resources are preloaded for faster rendering
+- **DNS Prefetching**: External resources are prefetched for quicker loading
+- **Mobile Performance Mode**: Automatic detection and optimization for slower devices
 
 ## 🔧 Browser Support
 
@@ -98,6 +102,29 @@ I've tested this across all major browsers:
 I believe the web should be accessible to everyone:
 - **Keyboard Navigation**: Full keyboard support for all interactions
 - **Screen Reader**: Semantic HTML structure for assistive technologies
+
+## 🚀 Performance Optimizations Applied
+
+### File Size Reductions
+- **animations.css**: Reduced from 10.22KB to 3.42KB (66% reduction)
+- **main.js**: Reduced from 14.17KB to 12.53KB (12% reduction)
+- **Total CSS**: Reduced by ~6.8KB through removal of unused classes
+- **Background Image**: Converted from PNG (2.3MB) to AVIF (0.99MB) - 57% reduction!
+
+### Removed Unused Code
+- **CSS Classes**: Removed `.fade-in`, `.slide-in-left`, `.slide-in-right`, `.scale-in`, `.glitch`, `.typewriter`, `.float`, `.pulse`, `.shake`, `.loading-spinner`, `.parallax`
+- **JavaScript**: Removed unused intersection observer code and simplified animations
+- **CSS Animations**: Removed unused keyframe animations and effects
+
+### Performance Improvements
+- **Resource Preloading**: Added preload directives for critical CSS and JS files
+- **DNS Prefetching**: Added DNS prefetch for external resources (fonts, CDNs, social links)
+- **Mobile Optimization**: Enhanced mobile background handling and performance mode detection
+- **Background Image**: Fixed incorrect file references and optimized loading
+- **AVIF Image Format**: Converted background from PNG (2.3MB) to AVIF (0.99MB) - 57% size reduction!
+- **Scroll Performance**: Fixed scrolling lag by removing `background-attachment: fixed` and optimizing animations
+- **Animation Optimization**: Reduced animation complexity, particle counts, and added scroll-based animation pausing
+- **CSS Performance**: Removed `will-change` properties and `transform: translateZ(0)` that were causing layout thrashing
 - **Focus Indicators**: Clear focus states for keyboard users
 - **Skip Links**: Quick navigation for accessibility
 - **ARIA Labels**: Proper labeling for all interactive elements

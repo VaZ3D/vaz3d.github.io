@@ -24,8 +24,17 @@
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
     
-    <!-- Preload critical resources -->
-    <link rel="preload" href="assets/images/Background.png" as="image" type="image/jpeg">
+            <!-- Preload critical resources -->
+        <link rel="preload" href="assets/images/Background.avif" as="image" type="image/avif" media="(min-width: 768px)">
+    <link rel="preload" href="assets/css/style.css" as="style">
+    <link rel="preload" href="assets/js/main.js" as="script">
+    
+    <!-- DNS prefetch for external resources -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="//github.com">
+    <link rel="dns-prefetch" href="//linkedin.com">
+    <link rel="dns-prefetch" href="//instagram.com">
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="assets/css/style.css">

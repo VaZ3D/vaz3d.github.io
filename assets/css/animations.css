@@ -1,50 +1,5 @@
 /* ===== ADVANCED ANIMATIONS ===== */
 
-/* Scroll-triggered animations */
-.fade-in {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s ease;
-}
-
-.fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.slide-in-left {
-    opacity: 0;
-    transform: translateX(-50px);
-    transition: all 0.8s ease;
-}
-
-.slide-in-left.visible {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.slide-in-right {
-    opacity: 0;
-    transform: translateX(50px);
-    transition: all 0.8s ease;
-}
-
-.slide-in-right.visible {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.scale-in {
-    opacity: 0;
-    transform: scale(0.8);
-    transition: all 0.8s ease;
-}
-
-.scale-in.visible {
-    opacity: 1;
-    transform: scale(1);
-}
-
 /* Skill bar animations */
 .skill-bar {
     animation: skillBarFill 2s ease-in-out 1s forwards;
@@ -66,436 +21,156 @@
     50% { transform: scale(1.2); }
 }
 
-/* Parallax effects */
-.parallax {
-    transform: translateZ(0);
-    will-change: transform;
-}
-
-/* Loading animations */
-.loading-spinner {
-    width: 40px;
-    height: 40px;
-    border: 3px solid var(--border-subtle);
-    border-top: 3px solid var(--neon-blue);
+/* Avatar pulse animation */
+.avatar-pulse {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border: 2px solid var(--neon-blue);
     border-radius: 50%;
-    animation: spin 1s linear infinite;
+    animation: pulse 2s ease-in-out infinite;
+    opacity: 0.3;
 }
 
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+@keyframes pulse {
+    0%, 100% { 
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.3;
+    }
+    50% { 
+        transform: translate(-50%, -50%) scale(1.1);
+        opacity: 0.1;
+    }
 }
 
-/* Glitch effect */
-.glitch {
-    position: relative;
-    animation: glitch 2s infinite;
+/* Digital rain animation - optimized for performance */
+.raindrop {
+    position: absolute;
+    background: linear-gradient(to bottom, transparent, var(--neon-green));
+    border-radius: 1px;
+    animation: rainFall linear infinite;
+    opacity: 0.05;
+    /* Reduced opacity for better performance */
 }
 
-.glitch::before,
-.glitch::after {
-    content: attr(data-text);
+/* Particle animation */
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    animation: particleFloat linear infinite;
+}
+
+@keyframes particleFloat {
+    0% {
+        transform: translateY(100vh) translateX(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100px) translateX(100px);
+        opacity: 0;
+    }
+}
+
+/* Cyber grid animation - optimized for performance */
+.cyber-grid {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    background-image: 
+        linear-gradient(rgba(0, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: gridMove 30s linear infinite;
+    opacity: 0.2;
+    /* Reduced opacity and slower animation for better performance */
 }
 
-.glitch::before {
-    animation: glitch-1 0.5s infinite;
-    color: var(--neon-pink);
-    z-index: -1;
+/* Neon buildings animation - optimized for performance */
+.neon-buildings {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(90deg, transparent 0%, rgba(255, 0, 128, 0.05) 20%, transparent 40%),
+        linear-gradient(90deg, transparent 60%, rgba(0, 255, 255, 0.05) 80%, transparent 100%);
+    animation: buildingGlow 6s ease-in-out infinite alternate;
+    /* Reduced opacity and slower animation for better performance */
 }
 
-.glitch::after {
-    animation: glitch-2 0.5s infinite;
-    color: var(--neon-blue);
-    z-index: -2;
-}
-
-@keyframes glitch {
-    0%, 100% { transform: translate(0); }
-    20% { transform: translate(-2px, 2px); }
-    40% { transform: translate(-2px, -2px); }
-    60% { transform: translate(2px, 2px); }
-    80% { transform: translate(2px, -2px); }
-}
-
-@keyframes glitch-1 {
-    0%, 100% { transform: translate(0); }
-    20% { transform: translate(-2px, 2px); }
-    40% { transform: translate(-2px, -2px); }
-    60% { transform: translate(2px, 2px); }
-    80% { transform: translate(2px, -2px); }
-}
-
-@keyframes glitch-2 {
-    0%, 100% { transform: translate(0); }
-    20% { transform: translate(2px, -2px); }
-    40% { transform: translate(2px, 2px); }
-    60% { transform: translate(-2px, -2px); }
-    80% { transform: translate(-2px, 2px); }
-}
-
-/* Typewriter effect */
-.typewriter {
-    overflow: hidden;
-    border-right: 2px solid var(--neon-blue);
-    white-space: nowrap;
-    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
-}
-
-@keyframes typing {
-    from { width: 0; }
-    to { width: 100%; }
-}
-
-@keyframes blink-caret {
-    from, to { border-color: transparent; }
-    50% { border-color: var(--neon-blue); }
-}
-
-/* Floating elements */
-.float {
-    animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-}
-
-/* Pulse effect */
-.pulse {
-    animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-}
-
-/* Shake effect */
-.shake {
-    animation: shake 0.5s ease-in-out;
-}
-
-@keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-5px); }
-    75% { transform: translateX(5px); }
-}
-
-/* Bounce effect */
-.bounce {
-    animation: bounce 1s ease-in-out;
-}
-
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-    40% { transform: translateY(-10px); }
-    60% { transform: translateY(-5px); }
-}
-
-/* Rotate effect */
-.rotate {
-    animation: rotate 2s linear infinite;
-}
-
-@keyframes rotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
-/* Neon flicker */
-.neon-flicker {
-    animation: neonFlicker 1.5s infinite alternate;
-}
-
-@keyframes neonFlicker {
-    0%, 18%, 22%, 25%, 53%, 57%, 100% {
-        text-shadow: 0 0 4px var(--neon-blue),
-                     0 0 11px var(--neon-blue),
-                     0 0 19px var(--neon-blue),
-                     0 0 40px var(--neon-blue);
+@keyframes buildingGlow {
+    0% {
+        opacity: 0.3;
+        transform: scaleY(1);
     }
-    20%, 24%, 55% {
-        text-shadow: none;
+    100% {
+        opacity: 0.6;
+        transform: scaleY(1.1);
     }
 }
 
-/* Matrix rain effect */
-.matrix-rain {
+/* Cyber particles animation */
+.cyber-particles {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: -1;
 }
 
-.matrix-rain::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, 
-        transparent 0%, 
-        rgba(0, 255, 0, 0.1) 50%, 
-        transparent 100%);
-    animation: matrixMove 20s linear infinite;
+/* Performance mode optimizations */
+.performance-mode .digital-rain {
+    display: none;
 }
 
-@keyframes matrixMove {
-    0% { transform: translateY(-100%); }
-    100% { transform: translateY(100%); }
+.performance-mode .cyber-particles {
+    display: none;
 }
 
-/* Holographic effect */
-.holographic {
-    background: linear-gradient(45deg, 
-        transparent 30%, 
-        rgba(255, 255, 255, 0.1) 50%, 
-        transparent 70%);
-    background-size: 200% 200%;
-    animation: holographic 3s ease-in-out infinite;
+/* Pause animations during scroll for better performance */
+body.scrolling .raindrop {
+    animation-play-state: paused;
 }
 
-@keyframes holographic {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
+body.scrolling .particle {
+    animation-play-state: paused;
 }
 
-/* Cyber grid */
-.cyber-grid {
-    background-image: 
-        linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
-    background-size: 50px 50px;
-    animation: gridMove 10s linear infinite;
+body.scrolling .cyber-grid {
+    animation-play-state: paused;
 }
 
-@keyframes gridMove {
-    0% { transform: translate(0, 0); }
-    100% { transform: translate(50px, 50px); }
+body.scrolling .neon-buildings {
+    animation-play-state: paused;
 }
 
-/* Energy field */
-.energy-field {
-    position: relative;
+body.scrolling .avatar-pulse {
+    animation-play-state: paused;
+}
+
+/* Loading state */
+body:not(.loaded) {
     overflow: hidden;
 }
 
-.energy-field::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: conic-gradient(
-        from 0deg,
-        transparent,
-        var(--neon-blue),
-        transparent,
-        var(--neon-pink),
-        transparent
-    );
-    animation: energyRotate 4s linear infinite;
+body:not(.loaded) .cyber-background {
+    opacity: 0;
 }
 
-@keyframes energyRotate {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* Data stream */
-.data-stream {
-    position: relative;
-    overflow: hidden;
-}
-
-.data-stream::after {
-    content: '01';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, 
-        transparent 0%, 
-        rgba(0, 255, 255, 0.3) 50%, 
-        transparent 100%);
-    animation: dataFlow 2s linear infinite;
-    font-family: 'Courier New', monospace;
-    font-size: 12px;
-    color: var(--neon-blue);
-    white-space: nowrap;
-}
-
-@keyframes dataFlow {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
-}
-
-/* Neon border animation */
-.neon-border {
-    position: relative;
-}
-
-.neon-border::before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: linear-gradient(45deg, 
-        var(--neon-pink), 
-        var(--neon-blue), 
-        var(--neon-purple), 
-        var(--neon-pink));
-    background-size: 400% 400%;
-    border-radius: inherit;
-    z-index: -1;
-    animation: borderGlow 3s ease-in-out infinite;
-}
-
-@keyframes borderGlow {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-}
-
-/* Particle explosion */
-.particle-explosion {
-    position: relative;
-}
-
-.particle-explosion::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 4px;
-    height: 4px;
-    background: var(--neon-pink);
-    border-radius: 50%;
-    animation: explode 1s ease-out forwards;
-}
-
-@keyframes explode {
-    0% {
-        transform: translate(-50%, -50%) scale(0);
-        opacity: 1;
-    }
-    100% {
-        transform: translate(-50%, -50%) scale(20);
-        opacity: 0;
-    }
-}
-
-/* Cyber scan line */
-.scan-line {
-    position: relative;
-    overflow: hidden;
-}
-
-.scan-line::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, 
-        transparent 0%, 
-        var(--neon-blue) 50%, 
-        transparent 100%);
-    animation: scan 2s linear infinite;
-}
-
-@keyframes scan {
-    0% { transform: translateY(-100%); }
-    100% { transform: translateY(100vh); }
-}
-
-/* Responsive animations */
-@media (max-width: 768px) {
-    .hero-title {
-        font-size: 2.5rem;
-    }
-    
-    .section-title {
-        font-size: 2rem;
-    }
-    
-    .hero-container {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-    
-    .cyber-avatar {
-        width: 200px;
-        height: 200px;
-    }
-    
-    .about-content {
-        grid-template-columns: 1fr;
-    }
-    
-    .contact-content {
-        grid-template-columns: 1fr;
-    }
-    
-    .timeline-item {
-        flex-direction: column !important;
-    }
-    
-    .timeline-content {
-        width: 100%;
-        margin-top: 1rem;
-    }
-}
-
-/* Performance optimizations */
-@media (prefers-reduced-motion: reduce) {
-    * {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
-}
-
-/* High contrast mode support */
-@media (prefers-contrast: high) {
-    :root {
-        --neon-pink: #ff0000;
-        --neon-blue: #0000ff;
-        --neon-purple: #800080;
-    }
-}
-
-/* Print styles */
-@media print {
-    .cyber-background,
-    .digital-rain,
-    .neon-buildings,
-    .cyber-particles {
-        display: none;
-    }
-    
-    body {
-        background: white;
-        color: black;
-    }
-    
-    .navbar {
-        position: static;
-        background: white;
-    }
+body.loaded .cyber-background {
+    opacity: 1;
+    transition: opacity 1s ease;
 }

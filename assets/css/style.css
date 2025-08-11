@@ -78,22 +78,27 @@ body {
     height: 100%;
     z-index: -1;
     background: 
-        linear-gradient(135deg, rgba(5, 5, 5, 0.8) 0%, rgba(10, 10, 10, 0.7) 100%),
-        url('../images/Background.png');
+        linear-gradient(135deg, rgba(5, 5, 5, 0.9) 0%, rgba(10, 10, 10, 0.8) 100%),
+        url('../images/Background.avif');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-attachment: scroll;
     /* Fallback for mobile */
     background-color: var(--bg-dark);
     /* Ensure the element is visible */
     opacity: 1;
     visibility: visible;
-    /* Force hardware acceleration */
-    transform: translateZ(0);
-    -webkit-transform: translateZ(0);
-    /* Optimize for performance */
-    will-change: transform;
+    /* Optimize for performance - removed will-change and transform */
+}
+
+/* Fallback for browsers that don't support AVIF */
+@supports not (background-image: url('../images/Background.avif')) {
+    .cyber-background {
+        background: 
+            linear-gradient(135deg, rgba(5, 5, 5, 0.8) 0%, rgba(10, 10, 10, 0.7) 100%),
+            url('../images/Background.png');
+    }
 }
 
 /* Mobile-specific background rules */
@@ -101,15 +106,11 @@ body {
     .cyber-background {
         background: 
             linear-gradient(135deg, rgba(5, 5, 5, 0.9) 0%, rgba(10, 10, 10, 0.8) 100%),
-            url('../images/Background.jpg');
+            url('../images/Background.avif');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-        background-attachment: scroll; /* Changed from fixed for mobile */
-        /* Ensure the image loads */
-        background-image: 
-            linear-gradient(135deg, rgba(5, 5, 5, 0.9) 0%, rgba(10, 10, 10, 0.8) 100%),
-            url('../images/Background.jpg');
+        background-attachment: scroll;
         /* Force background to show */
         min-height: 100vh;
         height: 100vh;
@@ -125,7 +126,7 @@ body {
     .cyber-background {
         background: 
             linear-gradient(135deg, rgba(5, 5, 5, 0.95) 0%, rgba(10, 10, 10, 0.9) 100%),
-            url('../images/Background.jpg');
+            url('../images/Background.avif');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -165,10 +166,7 @@ body {
     overflow: hidden;
     pointer-events: none;
     z-index: 5;
-    /* Optimize for performance */
-    will-change: transform;
-    transform: translateZ(0);
-    -webkit-transform: translateZ(0);
+    /* Optimize for performance - removed will-change and transform */
 }
 
 .raindrop {

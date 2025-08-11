@@ -30,49 +30,27 @@ document.addEventListener('DOMContentLoaded', function() {
         // Clear existing raindrops
         rainContainer.innerHTML = '';
         
-        // Reduce number of drops based on performance mode
-        const numberOfDrops = performanceMode ? 120 : 200; // Reduced from 300
+        // Significantly reduce number of drops for better performance
+        const numberOfDrops = performanceMode ? 60 : 100;
         
         for (let i = 0; i < numberOfDrops; i++) {
             const raindrop = document.createElement('div');
             raindrop.className = 'raindrop';
             
-            // Dynamic horizontal distribution for wush effect
-            const distribution = Math.random();
-            let left;
-            if (distribution < 0.4) {
-                // Dense center area (40% chance)
-                left = 15 + Math.random() * 70;
-            } else if (distribution < 0.7) {
-                // Medium spread (30% chance)
-                left = Math.random() * 100;
-            } else {
-                // Edge areas (30% chance)
-                left = (Math.random() < 0.5) ? Math.random() * 15 : 85 + Math.random() * 15;
-            }
+            // Simplified positioning
+            const left = Math.random() * 100;
             
-            // Varied animation duration with acceleration effect (2-8 seconds)
-            const baseDuration = 2 + Math.random() * 6;
-            const speedVariation = 0.6 + Math.random() * 0.8; // More speed variation
-            const duration = baseDuration / speedVariation;
+            // Simplified animation duration
+            const duration = 3 + Math.random() * 4;
             
-            // Staggered delay for continuous wush effect across full height
-            const delay = Math.random() * 12; // Longer delay range for full coverage
+            // Staggered delay
+            const delay = Math.random() * 8;
             
-            // Varied streak sizes for water-like effect
-            const sizeVariation = Math.random();
-            let width, height;
-            if (sizeVariation < 0.4) {
-                width = 0.5; height = 30 + Math.random() * 20; // Very thin short streaks
-            } else if (sizeVariation < 0.7) {
-                width = 1; height = 50 + Math.random() * 25; // Thin medium streaks
-            } else if (sizeVariation < 0.9) {
-                width = 1.5; height = 70 + Math.random() * 30; // Medium streaks
-            } else {
-                width = 2; height = 90 + Math.random() * 40; // Thick long streaks
-            }
+            // Simplified sizes
+            const width = 0.5 + Math.random() * 1;
+            const height = 30 + Math.random() * 40;
             
-            // Apply styles with minimal DOM manipulation
+            // Apply styles
             raindrop.style.cssText = `
                 left: ${left}%;
                 width: ${width}px;
@@ -81,22 +59,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 animation-delay: ${delay}s;
             `;
             
-            // Dynamic movement for wush effect
-            const windFactor = (Math.random() - 0.5) * 0.4; // More wind variation
-            const rotation = (Math.random() - 0.5) * 15; // More rotation for wush
-            
-            // Apply transform with wush physics
-            raindrop.style.transform = `translateX(${windFactor * 150}px) rotate(${rotation}deg)`;
-            
-            // Enhanced opacity for water-like effect
-            const baseOpacity = 0.08 + Math.random() * 0.12; // Even more transparent for water
-            const sizeOpacityFactor = Math.min(1, height / 60); // Longer streaks more visible
-            const opacity = baseOpacity * sizeOpacityFactor;
+            // Simplified opacity
+            const opacity = 0.03 + Math.random() * 0.05;
             raindrop.style.opacity = opacity;
-            
-            // Dynamic blur for water-like effect
-            const blurAmount = 0.2 + Math.random() * 0.8; // Less blur for water clarity
-            raindrop.style.filter = `blur(${blurAmount}px)`;
             
             rainContainer.appendChild(raindrop);
         }
@@ -117,14 +82,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const backgroundElement = document.querySelector('.cyber-background');
         if (!backgroundElement) return;
         
-        // Check if we're on mobile
         const isMobile = window.innerWidth <= 768;
         
         if (isMobile) {
-            // Preload the background image
             const bgImage = new Image();
             bgImage.onload = function() {
-                // Force the background to be applied
                 backgroundElement.style.backgroundImage = `
                     linear-gradient(135deg, rgba(5, 5, 5, 0.9) 0%, rgba(10, 10, 10, 0.8) 100%),
                     url('assets/images/Background.png')
@@ -136,7 +98,6 @@ document.addEventListener('DOMContentLoaded', function() {
             };
             bgImage.onerror = function() {
                 console.warn('Background image failed to load on mobile');
-                // Apply a fallback gradient
                 backgroundElement.style.background = `
                     linear-gradient(135deg, rgba(5, 5, 5, 0.95) 0%, rgba(10, 10, 10, 0.9) 100%)
                 `;
@@ -209,34 +170,31 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Throttled scroll handler for better performance
+    let isScrolling = false;
+    let scrollEndTimeout;
+    
     window.addEventListener('scroll', function() {
         if (!scrollTimeout) {
             scrollTimeout = setTimeout(() => {
                 updateNavbar();
                 scrollTimeout = null;
-            }, 16); // ~60fps
+            }, 16);
         }
-    });
-    
-    // ===== OPTIMIZED INTERSECTION OBSERVER =====
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                // Unobserve after animation to save resources
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-    
-    // Observe elements for scroll animations
-    document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .scale-in').forEach(el => {
-        observer.observe(el);
+        
+        // Disable animations during scroll for better performance
+        if (!isScrolling) {
+            isScrolling = true;
+            document.body.classList.add('scrolling');
+        }
+        
+        // Clear existing timeout
+        clearTimeout(scrollEndTimeout);
+        
+        // Re-enable animations after scroll ends
+        scrollEndTimeout = setTimeout(() => {
+            isScrolling = false;
+            document.body.classList.remove('scrolling');
+        }, 150);
     });
     
     // ===== OPTIMIZED SKILL BARS ANIMATION =====
@@ -270,21 +228,22 @@ document.addEventListener('DOMContentLoaded', function() {
         const particleContainer = document.querySelector('.cyber-particles');
         if (!particleContainer) return;
         
-        const particleCount = performanceMode ? 30 : 50; // Reduced particle count
+        // Significantly reduce particle count for better performance
+        const particleCount = performanceMode ? 15 : 25;
         
         for (let i = 0; i < particleCount; i++) {
             const particle = document.createElement('div');
             particle.className = 'particle';
             particle.style.cssText = `
                 position: absolute;
-                width: 2px;
-                height: 2px;
+                width: 1px;
+                height: 1px;
                 background: ${getRandomNeonColor()};
                 border-radius: 50%;
                 left: ${Math.random() * 100}%;
                 top: ${Math.random() * 100}%;
-                animation: particleFloat ${5 + Math.random() * 10}s linear infinite;
-                opacity: ${0.3 + Math.random() * 0.7};
+                animation: particleFloat ${8 + Math.random() * 12}s linear infinite;
+                opacity: ${0.2 + Math.random() * 0.3};
             `;
             particleContainer.appendChild(particle);
         }
