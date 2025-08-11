@@ -41,41 +41,7 @@ Welcome to my personal portfolio! I'm Edgar, a passionate Full Stack Developer &
 - **Glitch Effects**: Cyberpunk-style text effects that add character
 - **Holographic Elements**: Gradient animations and reflections for that sci-fi feel
 
-## 🚀 Getting Started
 
-### What You Need
-- A modern web browser (Chrome, Firefox, Safari, Edge)
-- Local web server (optional, for development)
-
-### How to Run
-1. Clone or download my project files
-2. Open `index.html` in your web browser
-3. For development, use a local server:
-   ```bash
-   # Using Python
-   python -m http.server 8000
-   
-   # Using Node.js
-   npx serve .
-   
-   # Using PHP
-   php -S localhost:8000
-   ```
-
-### Project Structure
-```
-VAZED_Website/
-├── index.html              # Main homepage
-├── assets/
-│   ├── css/
-│   │   ├── style.css       # Main stylesheet with my cyberpunk theme
-│   │   ├── animations.css  # Advanced animations I've crafted
-│   │   └── responsive.css  # Mobile-first responsive design
-│   ├── js/
-│   │   └── main.js         # JavaScript functionality
-│   └── images/             # Custom SVG assets I created
-└── README.md               # This documentation
-```
 
 ## 🎨 Customization Guide
 
